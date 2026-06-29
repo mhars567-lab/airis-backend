@@ -164,13 +164,14 @@ Karakter dirancang untuk merepresentasikan sifat Angin Gending yang bergerak din
 
 app.post('/api/chat', async (req, res) => {
     try {
-        const { message } = req.body;
+      const { message, prompt } = req.body;
+const userMessage = message || prompt;
 
         if (!API_KEY) {
             return res.status(500).json({ error: "API Key Gemini belum disetting di Vercel!" });
         }
 
-        const promptLengkap = `${DATA_TUGAS}\n\nPertanyaan user: ${message}`;
+        const promptLengkap = `${DATA_TUGAS}\n\nPertanyaan user: ${userMessage}`;
 
         // Menggunakan Axios untuk menembak Gemini API (Pasti Lolos)
         const response = await axios.post(
