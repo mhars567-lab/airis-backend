@@ -15,6 +15,7 @@ app.use((req, res, next) => {
     }
     next();
 });
+app.use(express.json());
 const PORT = process.env.PORT || 3000;
 const API_KEY = process.env.GEMINI_API_KEY;
 
